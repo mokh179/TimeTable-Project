@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+@{
+    Layout = null;
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Home</title>
+
+    <link rel="stylesheet" href="~/Admin Panel/bootstrap-4.0.0-dist/css/bootstrap.min.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-nav {
+            position: absolute;
+            right: 0;
+        }
+
+        .container-fluid {
+            width: 100vw;
+            height: 100vh;
+            background-image: url('../../Admin Panel/Background_Image.png');
+        }
+
+        /*.nav-link {
+            font-family: Amaranth;
+            font-size: 20px;
+        }*/
+
+        h1 {
+            font-size: 12vw;
+            margin-top: 30vh;
+            padding-left: 17vw;
+            font-family: Berkshire Swash;
+        }
+
+        p {
+            padding-left: 21vw;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding-top: 52vh;
+            font-family: Berkshire Swash;
+            font-size: 1.5vw;
+        }
+
+        .btn {
+            color: white !important;
+            background-color: #f8112c;
+            margin-left: 21vw;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <h1>KFS</h1>
+                
+                <a class="btn px-4 py-2 mt-4" href="../course/Index">Go to Courses</a>
+                <a class="btn px-4 py-2 mt-4" href="../course/Index">Go. to All Users</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Admin Panel/bootstrap-4.0.0-dist/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Admin Panel/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+</body>

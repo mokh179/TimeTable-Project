@@ -1,0 +1,162 @@
+﻿@model IEnumerable<Gproject.Models.User>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+@*<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />*@
+<link rel="stylesheet" href="~/Admin Panel/bootstrap-4.0.0-dist/css/bootstrap.min.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar-nav {
+        position: absolute;
+        right: 0;
+    }
+
+    .container-fluid {
+        width: 100vw;
+        height: 100vh;
+        background-color: #00ffff
+    }
+
+    .nav-link {
+        font-family: Amaranth;
+        font-size: 20px;
+    }
+
+    h1 {
+        font-size: 12vw;
+        margin-top: 30vh;
+        padding-left: 17vw;
+        font-family: Berkshire Swash;
+    }
+
+    p {
+        padding-left: 21vw;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding-top: 52vh;
+        font-family: Berkshire Swash;
+        font-size: 1.5vw;
+    }
+
+    .btn {
+        color: white !important;
+        background-color: #f8112c;
+        margin-left: 21vw;
+    }
+    #example {
+        table-layout: auto;
+        width: 800px;
+        overflow: hidden;
+        word-wrap: break-word;
+        text-align: center
+    }
+    #t1 {
+        float: left
+    }
+</style>
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <nav class="navbar navbar-expand-xl navbar-light">
+
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarcontent" aria-controls="navbarcontent" aria-expanded="false" aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarcontent">
+                <ul class="navbar-nav mt-5 pr-5">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../Users/Admin"> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../course/Index">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Users/AllUsers">Manage Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="container">
+            <div style="float:right">
+                <a href="../Users/AddTeachingMember" class="btn btn-success">Add</a>
+            </div>
+            <br />
+            <br />
+            <br />
+            <table id="example" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Name</th>
+                        <th>Level</th>
+                        <th>Role</th>
+                        <th>Governate</th>
+                        <th>//</th>
+                        <th>//</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.userName</td>
+                            <td>@item.Name</td>
+                            <td>@item.Level.levelName</td>
+                            <td>@item.Role.roleName</td>
+                            <td>@item.Governate.governateName</td>
+                            <td id="t1">
+                                <a href="../Users/EditUser/@item.userName" class="btn btn-danger">Edit</a>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-danger" onclick="confirmdel(@item.userName)">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.css" />
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>

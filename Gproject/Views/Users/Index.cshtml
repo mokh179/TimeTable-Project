@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Gproject.Models.getdata>
+@{
+    Layout = null;
+}
+@**@
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="container">
+        <br />
+        <br />
+        <br />
+        <div style="background-color:#808080;text-align:center">
+            <br />
+            <h1>Welcome @ViewBag.Name</h1>
+            <br />
+        </div>
+        
+        <br />
+        <br />
+        <br /> 
+       
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Day</th>
+                    <th>Lab</th>
+                    <th>Floor</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.course</td>
+                        <td>@item.DayName</td>
+                        <td>@item.LabName</td>
+                        <td>@item.floor</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+@section scripts {
+
+
+}
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>

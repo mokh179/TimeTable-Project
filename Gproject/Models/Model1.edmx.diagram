@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d976ab642f024c7c8d02688487c3c00f" Name="Diagram1">
+        <EntityTypeShape EntityType="GprojectModel.Floor" Width="1.5" PointX="2.375" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GprojectModel.Governate" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GprojectModel.Hall" Width="1.5" PointX="3.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GprojectModel.Lab" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GprojectModel.Level" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GprojectModel.Role" Width="1.5" PointX="7.375" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GprojectModel.sysdiagram" Width="1.5" PointX="5.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GprojectModel.Timetable" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GprojectModel.Type" Width="1.5" PointX="3.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GprojectModel.User" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="GprojectModel.FK_Halls_Floors" ManuallyRouted="false" />
+        <AssociationConnector Association="GprojectModel.FK_Labs_Floors" ManuallyRouted="false" />
+        <AssociationConnector Association="GprojectModel.FK_Users_Governates" ManuallyRouted="false" />
+        <AssociationConnector Association="GprojectModel.FK_Users_Levels" ManuallyRouted="false" />
+        <AssociationConnector Association="GprojectModel.FK_Users_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="GprojectModel.FK_Users_Type" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GprojectModel.Cours" Width="1.5" PointX="8.625" PointY="2.875" />
+        <AssociationConnector Association="GprojectModel.FK_Courses_Floors" />
+        <AssociationConnector Association="GprojectModel.FK_Courses_Labs1" />
+        <AssociationConnector Association="GprojectModel.FK_Courses_Levels" />
+        <AssociationConnector Association="GprojectModel.FK_Courses_Timetable" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

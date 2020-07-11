@@ -1,0 +1,150 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link href="~/Content/login.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<head>
+    <title>Register</title>
+</head>
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>Sign Up</h3>
+                <div style="color:yellow;display:none" id="err"> Passwords Don't Match</div>
+            </div>
+            <div class="card-body" style="display:inline-block">
+                <form>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="UserName" id="user">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="First Name" id="fName">
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Last name" id="lName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-th-list"></i></span>
+                                </div>
+                                @Html.DropDownList("lev", (SelectList)ViewBag.Levels, new { @class = "form-control selectpicker" })
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-venus-mars"></i></span>
+                                </div>
+                                @Html.DropDownList("type", (SelectList)ViewBag.Types, new { @class = "form-control selectpicker" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="password" id="pass">
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="Confirm Password" id="pass1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-globe"></i></span>
+                                </div>
+                                @Html.DropDownList("gover", (SelectList)ViewBag.Governate, new { @class = "form-control selectpicker" })
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <input type="submit" value="Register" class="btn float-right login_btn" id="Register">
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center links">
+                    if you have an account?<a href="../Users/Login">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#Register').click(function () {
+        if ($("#pass").val() != $("#pass1").val()) {
+            $("#err").show();
+        }
+        else
+        {
+            var data = {
+                Name: $("#fName").val() + " "+ $("#lName").val(),
+                userName: $("#user").val(),
+                levelNumber: $("#lev").val(),
+                password: $("#pass").val(),
+                typeNumber: $("#type").val(),
+                governateNumber: $("#gover").val()
+            };
+            $.ajax({
+                url: "../Users/Register",
+                type: "POST",
+                data: data,
+                success: function (result) {
+                   if (result != true)
+                   {
+                       alert("This UserName is already exist");
+                }
+                else
+                {
+                     window.location.href = '@Url.Action("Login","Users")';
+                }
+                },
+                error: function (errormessage) {
+                    alert("This UserName is already exist");
+                }
+
+            });
+        }
+
+    });
+</script>
+

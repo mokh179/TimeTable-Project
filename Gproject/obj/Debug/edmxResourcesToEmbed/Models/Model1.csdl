@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GprojectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Floor">
+    <Key>
+      <PropertyRef Name="floorNumber" />
+    </Key>
+    <Property Name="floorNumber" Type="Int32" Nullable="false" />
+    <Property Name="floorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Hall" Relationship="Self.FK_Halls_Floors" FromRole="Floors" ToRole="Halls" />
+    <NavigationProperty Name="Labs" Relationship="Self.FK_Labs_Floors" FromRole="Floors" ToRole="Labs" />
+    <NavigationProperty Name="Courses" Relationship="GprojectModel.FK_Courses_Floors" FromRole="Floor" ToRole="Cours" />
+  </EntityType>
+  <EntityType Name="Governate">
+    <Key>
+      <PropertyRef Name="governateNumber" />
+    </Key>
+    <Property Name="governateNumber" Type="Int32" Nullable="false" />
+    <Property Name="governateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Governates" FromRole="Governates" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Hall">
+    <Key>
+      <PropertyRef Name="hallNumber" />
+    </Key>
+    <Property Name="hallNumber" Type="Int32" Nullable="false" />
+    <Property Name="floorNumber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Floor" Relationship="Self.FK_Halls_Floors" FromRole="Halls" ToRole="Floors" />
+  </EntityType>
+  <EntityType Name="Lab">
+    <Key>
+      <PropertyRef Name="labNumber" />
+    </Key>
+    <Property Name="labNumber" Type="Int32" Nullable="false" />
+    <Property Name="labName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="floorNumber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Floor" Relationship="Self.FK_Labs_Floors" FromRole="Labs" ToRole="Floors" />
+    <NavigationProperty Name="Courses" Relationship="GprojectModel.FK_Courses_Labs1" FromRole="Lab" ToRole="Cours" />
+  </EntityType>
+  <EntityType Name="Level">
+    <Key>
+      <PropertyRef Name="levelNumber" />
+    </Key>
+    <Property Name="levelNumber" Type="Int32" Nullable="false" />
+    <Property Name="levelName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Levels" FromRole="Levels" ToRole="Users" />
+    <NavigationProperty Name="Courses" Relationship="GprojectModel.FK_Courses_Levels" FromRole="Level" ToRole="Cours" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleNumber" />
+    </Key>
+    <Property Name="roleNumber" Type="Int32" Nullable="false" />
+    <Property Name="roleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Role" FromRole="Role" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Timetable">
+    <Key>
+      <PropertyRef Name="tNumber" />
+    </Key>
+    <Property Name="tNumber" Type="Int32" Nullable="false" />
+    <Property Name="tName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="GprojectModel.FK_Courses_Timetable" FromRole="Timetable" ToRole="Cours" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="typeNumber" />
+    </Key>
+    <Property Name="typeNumber" Type="Int32" Nullable="false" />
+    <Property Name="typeName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Type" FromRole="Type" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userName" />
+    </Key>
+    <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="governateNumber" Type="Int32" Nullable="false" />
+    <Property Name="typeNumber" Type="Int32" Nullable="false" />
+    <Property Name="roleNumber" Type="Int32" Nullable="false" />
+    <Property Name="levelNumber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Governate" Relationship="Self.FK_Users_Governates" FromRole="Users" ToRole="Governates" />
+    <NavigationProperty Name="Level" Relationship="Self.FK_Users_Levels" FromRole="Users" ToRole="Levels" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
+    <NavigationProperty Name="Type" Relationship="Self.FK_Users_Type" FromRole="Users" ToRole="Type" />
+  </EntityType>
+  <Association Name="FK_Halls_Floors">
+    <End Role="Floors" Type="Self.Floor" Multiplicity="1" />
+    <End Role="Halls" Type="Self.Hall" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Floors">
+        <PropertyRef Name="floorNumber" />
+      </Principal>
+      <Dependent Role="Halls">
+        <PropertyRef Name="hallNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Labs_Floors">
+    <End Role="Floors" Type="Self.Floor" Multiplicity="1" />
+    <End Role="Labs" Type="Self.Lab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Floors">
+        <PropertyRef Name="floorNumber" />
+      </Principal>
+      <Dependent Role="Labs">
+        <PropertyRef Name="floorNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Governates">
+    <End Role="Governates" Type="Self.Governate" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Governates">
+        <PropertyRef Name="governateNumber" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="governateNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Levels">
+    <End Role="Levels" Type="Self.Level" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Levels">
+        <PropertyRef Name="levelNumber" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="levelNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleNumber" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="roleNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Type">
+    <End Role="Type" Type="Self.Type" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="typeNumber" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="typeNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GprojectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Floors" EntityType="Self.Floor" />
+    <EntitySet Name="Governates" EntityType="Self.Governate" />
+    <EntitySet Name="Halls" EntityType="Self.Hall" />
+    <EntitySet Name="Labs" EntityType="Self.Lab" />
+    <EntitySet Name="Levels" EntityType="Self.Level" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Timetables" EntityType="Self.Timetable" />
+    <EntitySet Name="Types" EntityType="Self.Type" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Halls_Floors" Association="Self.FK_Halls_Floors">
+      <End Role="Floors" EntitySet="Floors" />
+      <End Role="Halls" EntitySet="Halls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Labs_Floors" Association="Self.FK_Labs_Floors">
+      <End Role="Floors" EntitySet="Floors" />
+      <End Role="Labs" EntitySet="Labs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Governates" Association="Self.FK_Users_Governates">
+      <End Role="Governates" EntitySet="Governates" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Levels" Association="Self.FK_Users_Levels">
+      <End Role="Levels" EntitySet="Levels" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Type" Association="Self.FK_Users_Type">
+      <End Role="Type" EntitySet="Types" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Courses" EntityType="GprojectModel.Cours" />
+    <AssociationSet Name="FK_Courses_Floors" Association="GprojectModel.FK_Courses_Floors">
+      <End Role="Floor" EntitySet="Floors" />
+      <End Role="Cours" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Labs1" Association="GprojectModel.FK_Courses_Labs1">
+      <End Role="Lab" EntitySet="Labs" />
+      <End Role="Cours" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Levels" Association="GprojectModel.FK_Courses_Levels">
+      <End Role="Level" EntitySet="Levels" />
+      <End Role="Cours" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Timetable" Association="GprojectModel.FK_Courses_Timetable">
+      <End Role="Timetable" EntitySet="Timetables" />
+      <End Role="Cours" EntitySet="Courses" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="courseNumber" />
+    </Key>
+    <Property Name="courseNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="courseName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="levelNumber" Type="Int32" Nullable="false" />
+    <Property Name="labNumber" Type="Int32" Nullable="false" />
+    <Property Name="floorNumber" Type="Int32" Nullable="false" />
+    <Property Name="tNumber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Floor" Relationship="GprojectModel.FK_Courses_Floors" FromRole="Cours" ToRole="Floor" />
+    <NavigationProperty Name="Lab" Relationship="GprojectModel.FK_Courses_Labs1" FromRole="Cours" ToRole="Lab" />
+    <NavigationProperty Name="Level" Relationship="GprojectModel.FK_Courses_Levels" FromRole="Cours" ToRole="Level" />
+    <NavigationProperty Name="Timetable" Relationship="GprojectModel.FK_Courses_Timetable" FromRole="Cours" ToRole="Timetable" />
+  </EntityType>
+  <Association Name="FK_Courses_Floors">
+    <End Type="GprojectModel.Floor" Role="Floor" Multiplicity="1" />
+    <End Type="GprojectModel.Cours" Role="Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Floor">
+        <PropertyRef Name="floorNumber" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="floorNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Labs1">
+    <End Type="GprojectModel.Lab" Role="Lab" Multiplicity="1" />
+    <End Type="GprojectModel.Cours" Role="Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lab">
+        <PropertyRef Name="labNumber" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="labNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Levels">
+    <End Type="GprojectModel.Level" Role="Level" Multiplicity="1" />
+    <End Type="GprojectModel.Cours" Role="Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Level">
+        <PropertyRef Name="levelNumber" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="levelNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Timetable">
+    <End Type="GprojectModel.Timetable" Role="Timetable" Multiplicity="1" />
+    <End Type="GprojectModel.Cours" Role="Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Timetable">
+        <PropertyRef Name="tNumber" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="tNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

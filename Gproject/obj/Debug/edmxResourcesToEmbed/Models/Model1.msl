@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GprojectModelStoreContainer" CdmEntityContainer="GprojectEntities">
+    <EntitySetMapping Name="Floors">
+      <EntityTypeMapping TypeName="GprojectModel.Floor">
+        <MappingFragment StoreEntitySet="Floors">
+          <ScalarProperty Name="floorNumber" ColumnName="floorNumber" />
+          <ScalarProperty Name="floorName" ColumnName="floorName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Governates">
+      <EntityTypeMapping TypeName="GprojectModel.Governate">
+        <MappingFragment StoreEntitySet="Governates">
+          <ScalarProperty Name="governateNumber" ColumnName="governateNumber" />
+          <ScalarProperty Name="governateName" ColumnName="governateName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Halls">
+      <EntityTypeMapping TypeName="GprojectModel.Hall">
+        <MappingFragment StoreEntitySet="Halls">
+          <ScalarProperty Name="hallNumber" ColumnName="hallNumber" />
+          <ScalarProperty Name="floorNumber" ColumnName="floorNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Labs">
+      <EntityTypeMapping TypeName="GprojectModel.Lab">
+        <MappingFragment StoreEntitySet="Labs">
+          <ScalarProperty Name="labNumber" ColumnName="labNumber" />
+          <ScalarProperty Name="labName" ColumnName="labName" />
+          <ScalarProperty Name="floorNumber" ColumnName="floorNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Levels">
+      <EntityTypeMapping TypeName="GprojectModel.Level">
+        <MappingFragment StoreEntitySet="Levels">
+          <ScalarProperty Name="levelNumber" ColumnName="levelNumber" />
+          <ScalarProperty Name="levelName" ColumnName="levelName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="GprojectModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="roleNumber" ColumnName="roleNumber" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="GprojectModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Timetables">
+      <EntityTypeMapping TypeName="GprojectModel.Timetable">
+        <MappingFragment StoreEntitySet="Timetable">
+          <ScalarProperty Name="tNumber" ColumnName="tNumber" />
+          <ScalarProperty Name="tName" ColumnName="tName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types">
+      <EntityTypeMapping TypeName="GprojectModel.Type">
+        <MappingFragment StoreEntitySet="Type">
+          <ScalarProperty Name="typeNumber" ColumnName="typeNumber" />
+          <ScalarProperty Name="typeName" ColumnName="typeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="GprojectModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="governateNumber" ColumnName="governateNumber" />
+          <ScalarProperty Name="typeNumber" ColumnName="typeNumber" />
+          <ScalarProperty Name="roleNumber" ColumnName="roleNumber" />
+          <ScalarProperty Name="levelNumber" ColumnName="levelNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="GprojectModel.Cours">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="tNumber" ColumnName="tNumber" />
+          <ScalarProperty Name="floorNumber" ColumnName="floorNumber" />
+          <ScalarProperty Name="labNumber" ColumnName="labNumber" />
+          <ScalarProperty Name="levelNumber" ColumnName="levelNumber" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="courseName" ColumnName="courseName" />
+          <ScalarProperty Name="courseNumber" ColumnName="courseNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
